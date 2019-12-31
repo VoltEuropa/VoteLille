@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" manifest="gadget_vote.appcache">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vote Gadget</title>
+
+    <link rel="stylesheet" href="lib/material_design_lite.1.3.0.min.css" />
+    <link rel="stylesheet" href="gadget_vote.css" />
+
+    <script src="lib/material_design_lite.1.3.0.min.js"></script>
+    
+    <script src="rsvp.latest.min.js"></script>
+    <script src="renderjs.latest.min.js"></script>
+    <script src="jio.latest.min.js"></script>
+    <script src="gadget_global.min.js"></script>
+    <script src="gadget_vote.js"></script>
+
+  </head>
+  <body>
+    <div class="mdl-dialog vote-dialog">
+      <div class="mdl-dialog__content vote-dialog-content"></div>
+    </div>
+
+    <div class="vote-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="vote-header mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="vote-home-button-text" data-i18n="Vote in Lille">Vote in Lille</span>
+          <h2 class="vote-site-header">&nbsp;<span class="vote-sub-title" data-i18n="The step by step guide">The step by step guide</span>&nbsp;<span class="vote-site-header-appendix" data-i18n="for EU citizens">for EU citizens</span> </h2>
+          <div class="mdl-layout-spacer"></div>
+          <!--button class="vote-homescreen-flag mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">add_to_homescreen</i>
+          </button-->
+          <!--form name="frube-open-menu-->
+          <button id="vote-open-menu" class="vote-header-button mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">language</i>
+          </button>
+          <!--/form-->
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu vote-language-menu" for="vote-open-menu">
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider vote-custom-menu-action">
+              <i class="vote-lang vote-lang_en"></i>
+              <form name="vote-select-language" class="vote-select-language">
+                <input type="hidden" name="vote_language" value="en" />
+                <button type="submit" class="mdl-button mdl-js-button" data-i18n="English">English</button>
+              </form>
+            </li>
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider vote-custom-menu-action ">
+              <i class="vote-lang vote-lang_fr"></i>
+              <form name="vote-select-language" class="vote-select-language">
+                <input type="hidden" name="vote_language" value="fr" />
+                <button type="submit" class="mdl-button mdl-js-button" data-i18n="French">French</button>
+              </form>
+            </li>
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider vote-custom-menu-action">
+              <i class="vote-lang vote-lang_de"></i>
+              <form name="vote-select-language" class="vote-select-language">
+                <input type="hidden" name="vote_language" value="de" />
+                <button type="submit" class="mdl-button mdl-js-button" data-i18n="German">German</button>
+              </form>
+            </li>
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider vote-custom-menu-action">
+              <i class="vote-lang vote-lang_es"></i>
+              <form name="vote-select-language" class="vote-select-language">
+                <input type="hidden" name="vote_language" value="es" />
+                <button type="submit" class="mdl-button mdl-js-button" data-i18n="Spanish">Spanish</button>
+              </form>
+            </li>
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider vote-custom-menu-action">
+              <i class="vote-lang vote-lang_nl"></i>
+              <form name="vote-select-language" class="vote-select-language">
+                <input type="hidden" name="vote_language" value="nl" />
+                <button type="submit" class="mdl-button mdl-js-button" data-i18n="Dutch">Dutch</button>
+              </form>
+            </li>
+            
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider vote-custom-menu-action">
+              <i class="vote-lang vote-lang_it"></i>
+              <form name="vote-select-language" class="vote-select-language">
+                <input type="hidden" name="vote_language" value="it" />
+                <button type="submit" class="mdl-button mdl-js-button" data-i18n="Italian">Italian</button>
+              </form>
+            </li>
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider vote-custom-menu-action">
+              <i class="vote-lang vote-lang_pl"></i>
+              <form name="vote-select-language" class="vote-select-language">
+                <input type="hidden" name="vote_language" value="pl" />
+                <button type="submit" class="mdl-button mdl-js-button" data-i18n="Polish">Polish</button>
+              </form>
+            </li>
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider vote-custom-menu-action">
+              <i class="vote-lang vote-lang_pt"></i>
+              <form name="vote-select-language" class="vote-select-language">
+                <input type="hidden" name="vote_language" value="pt" />
+                <button type="submit" class="mdl-button mdl-js-button" data-i18n="Portugese">Portugese</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <main class="vote-page-content mdl-layout__content">
+        <div class="vote-background">
+          <img class="vote-logo" src="img/vote_france_256x256-min.png" alt="Vote in France" />
+          <span class="vote-credits"><span data-i18n="Photo by">Photo by</span>&nbsp;<a class="vote-credits-link" href="https://unsplash.com/@geoffroyh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Geoffroy Hauwen</a>&nbsp;<span data-i18n="on">on</span>&nbsp;<a class="vote-credits-link" href="https://unsplash.com/">Unsplash</a></span>
+          <div class="vote-content-timer-wrapper">
+            <span class="vote-content-timer-title" data-i18n="Time left to register">Time left to apply to electoral list:</span>
+            <span class="vote-content-timer">
+              <span class="days"></span>&nbsp;<span class="vote-timer-large" data-i18n="days">days</span><span class="vote-timer-small" data-i18n="mini-days">d</span>
+              <span class="hours"></span>&nbsp;<span class="vote-timer-large" data-i18n="hours">hours</span><span class="vote-timer-small" data-i18n="mini-hours">h</span>
+              <span Class="minutes"></span>&nbsp;<span class="vote-timer-large" data-i18n="minutes">minutes</span><span class="vote-timer-small" data-i18n="mini-minutes">m</span>
+              <span class="seconds"></span>&nbsp;<span class="vote-timer-large" data-i18n="seconds">seconds</span><span class="vote-timer-small" data-i18n="mini-seconds">s</span>
+            </span>    
+            <div class="vote-alarm">
+              <form name="vote-remind-week" class="">
+                <button type="submit" class="vote-submit-button vote-create-alarm"><i class="material-icons">alarm</i><span class="vote-timer-large" data-i18n="Create Reminder">Create reminder</span><span class="vote-timer-small" data-i18n="Create Reminder">Create reminder</span></button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+        <div class="vote-content-intro-wrapper">
+          <div class="vote-content-intro">
+            <h1 class="vote-content-header" data-i18n="EU citizen living in France?">EU citizen living in France?</h1>
+            <p class="vote-content-subheader" data-i18n="The freedom to move and live anywhere">The freedom to move and live anywhere in Europe should not be taken for granted. Please participate in the upcoming European and municipal elections. This guide will show you how.</p>
+          </div>
+        </div>
+        <div class="vote-content-section">
+
+          <div class="vote-card mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text" data-i18n="1. Can I vote?">1. Can I vote?</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              <p class="vote-card-text" data-i18n="To vote in the municipal elections, you must:">To vote in the European elections, you need to request to be added to your lcoal electoral list. You have the right to do so, if:</p>
+              <ul>
+                <li class="vote-card-text" data-i18n="be at least 18 years of age">are at least 18 years old</li>
+                <li class="vote-card-text" data-i18n="be an EU citizen">are an EU citizen</li>
+                <li class="vote-card-text" data-i18n="live in France">live in France since at least 3 months</li>
+              </ul>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a href="https://www.lille.fr/Participer/Participer-aux-elections/S-inscrire-sur-les-listes-electorales" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" data-i18n="More info">More info</a>
+              <a href="https://www.service-public.fr/particuliers/vosdroits/F1937" target="_blank" class="mdl-button mdl-button-colored mdl-js-button mdl-js-ripple-effect" data-i18n="Your rights as EU citizen">Your rights as EU citizen</a>
+            </div>
+          </div>
+
+          <div class="vote-card mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text" data-i18n="2. Which documents do I need?">2. Which documents do I need?</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              <p class="vote-card-text" data-i18n="In order to vote you need to be registered">The following documents are required:</p>
+              <ul>
+                <li class="vote-card-text"><a class="vote-card-link" target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/R16026" title="French Government Forms - Cerfa 12670-02 Municipal Election"><span data-i18n="Form Cerfa 12670-02">Form Cerfa 12670-02</span></a></li>
+                <li class="vote-card-text" data-i18n="Identification - Passport, Identity Card or residence permit">Identification - Passport, Identity Card or residence permit</li>
+                <li class="vote-card-text"><a class="vote-card-link" href="https://absolutely-french.eu/what-is-a-justificatif-de-domicile/?lang=en" data-i18n="Justificatif de Domicile">Justificatif de Domicile</a>&nbsp;-&nbsp;<span data-i18n="a document verifiying your address">a document verifying your address</span></li>
+              </ul>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a href="https://www.service-public.fr/particuliers/vosdroits/F1937" title="French online public services - citzen rights - elections" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" data-i18n="More info">More info</a>
+            </div>
+          </div>
+
+          <div class="vote-card mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text" data-i18n="3. Where can I register?">3. Where can I register?</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              <p class="vote-card-text" data-i18n="It is possible to do the registration">It is possible to do the registration</p>
+              <ul>
+                <li class="vote-card-text"><span data-i18n="on">on</span>&nbsp;<a class="vote-card-link" target="_blank" href="https://www.service-public.fr/compte/se-connecter" data-i18n="online">www.service-public.fr</a></li>
+                <li class="vote-card-text"><span data-i18n="Adressed by mail">Adressée par courrier au service élections</span><pre>Hôtel de Ville 
+Place Augustin Laurent, 
+CS 30667 59033 Lille Cedex</pre></li>
+                <li class="vote-card-text" data-i18n="In district town halls">en mairies de quartier ou au service « Elections » de l'Hôtel de Ville</li>
+            </div>
+          </div>
+
+          <div class="vote-card mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text" data-i18n="4. Until when can I register?">4. Until when can I register?</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              <p class="vote-card-text">
+                <span data-i18n="Registration is possible until">Registration is possible until</span>&nbsp;<b><span class="vote-deadline" data-i18n="March 31st, 2019">February, 6th, 2020</span></b>.&nbsp;<span data-i18n="Create a reminder (ics file) by using the form below.">Create a reminder (ics file) by using the form below.</span></p>
+              
+              <form name="vote_remind">
+                <!--div class="mdl-textfield mdl-js-textfield"-->
+                  <input type="hidden" data-i19n="Deadline to sign up on electoral list for EU elections" value="" class="mdl-textfield__input" name="vote_remind_title" type="text" id="vote_remind_title">
+                  <!--label class="mdl-textfield__label" for="vote_remind_title" data-i18n="Title">Title</label>
+                </div -->
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" name="vote_remind_date" required max="2020-02-06" type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" id="vote_remind_date">
+                  <label class="mdl-textfield__label vote-override-label" for="vote_remind_date">Date</label>
+                  <span class="mdl-textfield__error" data-i18n="Invalid input, latest date is 31.03.2019!">Invalid input, latest date is 06.02.2020!</span>
+                </div>
+                <div class="mdl-card__actions">
+                 <button type="submit" class="vote-submit-button vote-stretch mdl-button mdl-js-button mdl-button--raised" data-i18n="Create reminder">Create reminder</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="vote-card mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text" data-i18n="5. What else can I do?">5. What else can I do?</h2>
+            </div>
+            <div class="mdl-card__supporting-text">  
+              <p class="vote-card-text vote-share-align" data-i18n="Spread the word, so others can register, too:">Share this page with friends and families, so other EU citizens can register aswell</p>
+              
+              <div class="text-center pt-2 pb-2" id="share-button-section">
+                <div class="pb-2 vote-share-align">
+                  <a class="share-button btn" href="https://www.facebook.com/sharer/sharer.php?u=https://www.votelille.eu" target="facebookPopup" onclick="window.open(this.href, 'facebookPopup', 'left=40,top=40,height=320,width=500,toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes'); return false;">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                  </a>
+                </div>
+                <div class="pb-2 vote-share-align">
+                  <a class="share-button btn" href="http://twitter.com/share?url=https://www.votelille.eu&amp;text=Vote in Lille - the step by step guide for EU citizens #Lille #Municipales2020 #EuropeanCitizens" target="twitterPopup" onclick="window.open(this.href, 'twitterPopup', 'left=40,top=40,height=320,width=500,toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes'); return false;">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                  </a>
+                </div>
+                <div class="pb-2 vote-share-align">
+                  <a class="share-button btn" href="whatsapp://send?text=https%3A%2F%2Fwww.votelille.eu%2F" data-action="share/whatsapp/share" data-href="https://www.votelille.eu/" target="_blank">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                  </a>
+                </div>
+                <div class="pb-2 vote-share-align">
+                  <a class="share-button btn" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.votelille.eu" onclick="window.open(this.href,'left=40,top=40,height=320,width=500,toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes'); return false;">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                  </a>
+                </div>
+                <div class="pb-2 vote-share-align">
+                  <a class="share-button btn" href="mailto:?body=https://votelille.eu/" target="_blank">
+                    <i class="material-icons" aria-hidden="true">mail_outline</i>
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+        </div>
+        <footer class="vote-footer-wrapper">
+        <div class="vote-footer-bar">
+          <p class="vote-footer-bar-text"><span class="vote-card-text" data-i18n="An initiative for">An initiative for the list</span>&nbsp;<a class="vote-card-link" href="https://twitter.com/lilleverte2020">LilleVerte2020</a>&nbsp;<span class="vote-card-text" data-i18n="led by">led by Stéphane Baly</span></p>
+        
+          <ul class="vote-logo-bar">
+            <li class="vote-logo-bar-entry"><a href="https://lille.eelv.fr/" target="_blank"><img class="vote-logo-bar-image" src="img/eelv.webp" alt="EELV Lille Hellemmes Lomme"></a></li>
+            <li class="vote-logo-bar-entry"><a href="https://generationecologie.fr/" target="_blank"><img class="vote-logo-bar-image" src="img/Generation_ecologie_logo.png" alt="Génération Écologie"></a></li>
+            <li class="vote-logo-bar-entry"><a href="https://www.generation-s.fr/" target="_blank"><img class="vote-logo-bar-image" src="img/Generations_le_mouvement.png" alt="Génération(s) - le mouvement"></a></li>
+            <li class="vote-logo-bar-entry"><a href="https://www.facebook.com/DiEM25.Lille/" target="_blank"><img class="vote-logo-bar-image" src="img/diem25lille.png" alt="Diem25 Lille"></a></li>
+            <li class="vote-logo-bar-entry"><a href="https://www.voltlille.fr/" target="_blank"><img class="vote-logo-bar-image" src="img/volt.png" alt="Volt Europa"></a></li>
+          </ul>
+        </div>
+        <div class="vote-footer">
+          <div class="vote-credits vote-credits-end">
+            <span class="" data-i18n="© 2019 - Created by">© 2020 - Created by</span>&nbsp;
+            <a class="vote-credits-link" href="https://www.voltlille.fr" title="Volt Lille"><img class="vote-publisher" src="img/volt.min.png" alt="Volt Lille" /></a>
+            <span class="">,</span>&nbsp;
+            <span class="" data-i18n="hosted by">hosted by</span>&nbsp;
+            <a class="vote-credits-link" href="https://github.com/VoltEuropa/VoteLille">Github</a>
+            <span class="">.</span>&nbsp;
+            <span class="" data-i18n="Icon inspired by">Icon inspired by</span>&nbsp;
+            <a class="vote-credits-link" href="https://thenounproject.com/search/?q=vote&i=52105">Desbenoit</a>&nbsp;
+            <span class="" data-i18n="from">from</span>&nbsp;
+            <a class="vote-credits-link" href="https://nounproject.com/" title="Nounproject">the Nounproject</a>
+            <span class="">.</span>
+          </div>
+        </div>
+        </footer>
+      </main>
+    </div>
+
+    <div data-gadget-url="gadget_jio.html"
+      data-gadget-scope="vote_jio"
+      data-gadget-sandbox="public">
+    </div>
+    <div data-gadget-url="gadget_jio.html"
+      data-gadget-scope="ods_jio"
+      data-gadget-sandbox="public">
+    </div>
+  
+  </body>
+</html>
+
+

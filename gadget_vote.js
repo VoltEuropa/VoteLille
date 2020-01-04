@@ -143,6 +143,8 @@
     .ready(function (gadget) {
       var element = gadget.element;
       gadget.property_dict = {
+        
+        "layout": getElem(element, ".vote-layout"),
 
         // yaya, should be localstorage caling repair to sync
         "url_dict": {},
@@ -272,6 +274,12 @@
       if (my_language === gadget.state.locale) {
         return;
       }
+      if (my_language === "ar") {
+        gadget.property_dict.layout.classList.add("ar");
+      } else {
+        gadget.property_dict.layout.classList.remove("ar");
+      }
+      
       return new RSVP.Queue()
         .push(function () {
           return gadget.stateChange({"locale": my_language});

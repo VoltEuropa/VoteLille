@@ -827,8 +827,14 @@ vote-stretch {
 .vote-select-language .mdl-menu__container {
   background: #fff;
 }
+.vote-lang-wrapper {
+  position: absolute;
+  width: 32px;
+  left: 4px;
+}
+/*
 .vote-lang {
-  background: url(img/flags.min.png) no-repeat;
+  background: url(img/flagsfull.min.png) no-repeat;
   position: absolute;
   width: 32px;
   height: 32px;
@@ -860,6 +866,17 @@ vote-stretch {
 }
 .vote-lang_pt {
   background-position: -192px -128px;
+}
+.vote-lang_ar {
+
+}
+*/
+.ar * {
+  direction: rtl;
+}
+.ar .mdl-menu__container.is-upgraded.is-visible {
+  left: 20px;
+  right: auto;
 }
 /* =========================== Logo Bar ======================================*/
 .vote-footer-wrapper {
